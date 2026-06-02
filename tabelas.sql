@@ -1,7 +1,3 @@
--- =========================================================================
--- LIMPANDO O BANCO (RESET)
--- Se as tabelas já existirem, apaga para recriar do zero sem erros
--- =========================================================================
 DROP TABLE IF EXISTS itens_venda CASCADE;
 DROP TABLE IF EXISTS avaliacao CASCADE;
 DROP TABLE IF EXISTS vendas CASCADE;
