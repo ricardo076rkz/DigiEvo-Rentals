@@ -1,6 +1,4 @@
--- =========================================================================
--- INSERÇÃO DOS DADOS (SEED) - JOGOS E LOCADORA
--- =========================================================================
+
 
 -- 1. Inserindo Clientes
 INSERT INTO usuario (nome, email, senha) VALUES
