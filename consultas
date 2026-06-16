@@ -1,0 +1,101 @@
+Consultas 
+
+ Ver todas as avaliações com notas altas (notas 4 e 5):
+
+SQL
+SELECT * FROM avaliacao WHERE nota >= 4;
+
+Listar os produtos que custam mais de R$ 45,00:
+
+SQL
+SELECT descricao, valor_unitario, quantidade_estoque 
+FROM produtos 
+WHERE valor_unitario > 45.00;
+
+ Consultas Intermediárias (Usando JOIN para juntar tabelas)
+ Ver as avaliações mostrando o nome do Usuário e o nome do Jogo (em vez de só mostrar IDs):
+
+SQL
+SELECT 
+    u.nome AS nome_usuario,
+    p.descricao AS nome_jogo,
+    a.nota,
+    a.descricao_comentario AS comentario
+FROM avaliacao a
+JOIN usuario u ON a.id_usuario = u.id_usuario
+JOIN produtos p ON a.id_produto = p.id_produto;
+
+Listar os produtos e quem é o fornecedor de cada um:
+
+SQL
+SELECT 
+    p.descricao AS nome_produto, 
+    p.valor_unitario, 
+    f.nome_razao_social AS fornecedor
+FROM produtos p
+JOIN fornecedores f ON p.id_fornecedor = f.id_fornecedor;
+
+Ver onde moram os usuários (Nome, Cidade e Estado):
+
+SQL
+SELECT 
+    u.nome,
+    e.cidade,
+    e.estado
+FROM usuario u
+JOIN endereco e ON u.id_usuario = e.id_usuario;
+
+Consultas Avançadas (Com agrupamentos, somas e relatórios)
+Extrato Geral de Vendas (O relatório mais completo da loja):
+Mostra o número da venda, o cliente que comprou, o jogo, a quantidade, o preço e a data.
+
+SQL
+SELECT 
+    v.id_venda,
+    v.data_venda,
+    u.nome AS cliente,
+    p.descricao AS jogo,
+    iv.quantidade,
+    iv.valor_unitario_momento AS preco_pago
+FROM vendas v
+JOIN usuario u ON v.id_usuario = u.id_usuario
+JOIN itens_venda iv ON v.id_venda = iv.id_venda
+JOIN produtos p ON iv.id_produto = p.id_produto
+ORDER BY v.id_venda;
+
+Ranking de quem mais gastou na loja:
+Soma o total de vendas agrupando por cliente e mostra quem gastou mais no topo.
+
+SQL
+SELECT 
+    u.nome AS cliente,
+    SUM(v.valor_total) AS total_gasto
+FROM vendas v
+JOIN usuario u ON v.id_usuario = u.id_usuario
+GROUP BY u.nome
+ORDER BY total_gasto DESC;
+
+Média de notas de cada jogo:
+Mostra qual jogo está com a melhor média de avaliação na sua plataforma.
+
+SQL
+SELECT 
+    p.descricao AS jogo,
+    ROUND(AVG(a.nota), 1) AS media_nota,
+    COUNT(a.id_avaliacao) AS total_avaliacoes
+FROM avaliacao a
+JOIN produtos p ON a.id_produto = p.id_produto
+GROUP BY p.descricao
+ORDER BY media_nota DESC;
+
+Valor total investido em estoque por Fornecedor:
+Calcula quanto vale todo o estoque que você tem parado na loja de cada fornecedor (Preço do produto × Quantidade em estoque).
+
+SQL
+SELECT 
+    f.nome_razao_social AS fornecedor,
+    SUM(p.valor_unitario * p.quantidade_estoque) AS valor_total_estoque
+FROM produtos p
+JOIN fornecedores f ON p.id_fornecedor = f.id_fornecedor
+GROUP BY f.nome_razao_social
+ORDER BY valor_total_estoque DESC;
