@@ -104,9 +104,7 @@ ORDER BY valor_total_estoque DESC;
 -- LISTA DE CONSULTAS BÁSICAS COM JOIN (E-COMMERCE DE GAMES)
 -- =======================================================================
 
--- 1. CONSULTA: USUÁRIO E ENDEREÇO
--- Objetivo: Listar o nome do cliente e a cidade onde ele mora.
--- Relação: Usuário (1,1) ------- (1,n) Endereço
+
 SELECT 
     u.nome AS "Cliente", 
     e.cidade AS "Cidade", 
@@ -115,9 +113,6 @@ FROM usuario u
 JOIN endereco e ON u.id_usuario = e.id_usuario;
 
 
--- 2. CONSULTA: PRODUTO E FORNECEDOR
--- Objetivo: Listar o nome de cada jogo e quem foi a sua publicadora/fornecedora.
--- Relação: Produto (1,n) ------- (1,n) Fornecedor
 SELECT 
     p.descricao AS "Nome do Jogo", 
     f.nome_razao_social AS "Publicadora"
@@ -125,9 +120,6 @@ FROM produtos p
 JOIN fornecedores f ON p.id_fornecedor = f.id_fornecedor;
 
 
--- 3. CONSULTA: VENDA E USUÁRIO
--- Objetivo: Listar o histórico de vendas mostrando qual cliente fez a compra.
--- Relação: Venda (1,n) ------- (1,1) Usuário
 SELECT 
     v.id_venda AS "Nº da Venda", 
     v.data_venda AS "Data",
@@ -137,9 +129,7 @@ FROM vendas v
 JOIN usuario u ON v.id_usuario = u.id_usuario;
 
 
--- 4. CONSULTA: AVALIAÇÃO E PRODUTO
--- Objetivo: Listar os comentários e notas que os jogos receberam dos clientes.
--- Relação: Avaliação (1,1) ------- (1,n) Produto
+
 SELECT 
     p.descricao AS "Jogo", 
     a.nota AS "Nota", 
