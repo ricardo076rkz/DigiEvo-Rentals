@@ -1,4 +1,4 @@
-
+TRUNCATE TABLE usuario, fornecedores, endereco, produtos, vendas, avaliacao, itens_venda RESTART IDENTITY CASCADE;
 
 -- 1. Inserindo Clientes
 INSERT INTO usuario (nome, email, senha) VALUES
@@ -125,3 +125,4 @@ INSERT INTO itens_venda (id_venda, id_produto, quantidade, valor_unitario_moment
 (13, 13, 1, 40.00), 
 (14, 14, 1, 55.00), 
 (15, 15, 1, 45.00);
+
