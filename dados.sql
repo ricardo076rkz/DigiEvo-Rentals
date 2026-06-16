@@ -1,4 +1,5 @@
-TRUNCATE TABLE usuario, fornecedores, endereco, produtos, vendas, avaliacao, itens_venda RESTART IDENTITY CASCADE;
+TRUNCATE TABLE usuario, fornecedores, endereco, produtos, vendas, avaliacao, itens_venda 
+RESTART IDENTITY CASCADE;
 
 -- 1. Inserindo Clientes
 INSERT INTO usuario (nome, email, senha) VALUES
@@ -110,19 +111,19 @@ INSERT INTO avaliacao (nota, descricao_comentario, data_publicacao, id_usuario, 
 
 -- 7. Inserindo Itens das Vendas/Locações
 INSERT INTO itens_venda (id_venda, id_produto, quantidade, valor_unitario_momento) VALUES
-(1, 1, 1, 50.00),   
-(2, 2, 1, 45.00),   
-(3, 3, 1, 30.00),   
-(4, 4, 1, 40.00),   
-(5, 5, 1, 35.00),   
-(6, 6, 1, 55.00),   
-(7, 7, 1, 25.00),   
-(8, 8, 1, 60.00),   
-(9, 9, 1, 50.00),   
-(10, 10, 1, 35.00), 
-(11, 11, 1, 30.00), 
-(12, 12, 1, 45.00), 
-(13, 13, 1, 40.00), 
-(14, 14, 1, 55.00), 
+(1, 1, 1, 50.00),
+(2, 2, 1, 45.00),
+(3, 3, 1, 30.00),
+(4, 4, 1, 40.00),
+(5, 5, 1, 35.00),
+(6, 6, 1, 55.00),
+(7, 7, 1, 25.00),
+(8, 8, 1, 60.00),
+(9, 9, 1, 50.00),
+(10, 10, 1, 35.00),
+(11, 11, 1, 30.00),
+(12, 12, 1, 45.00),
+(13, 13, 1, 40.00),
+(14, 14, 1, 55.00),
 (15, 15, 1, 45.00);
 
